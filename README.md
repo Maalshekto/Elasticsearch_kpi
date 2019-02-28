@@ -1,7 +1,10 @@
 # Elasticsearch KPI scripts 
 The elasticsearch kpi scripts are programmed in **Python 3.7** and conceived for being executed in Docker container.
+
 All scripts are designed to be used on Elasticsearch with version from 5.X.
+
 All scripts have no command line arguments, retrieving all needed informations from environment variables.
+
 There are generic environment variables for connecting to Elasticsearch server and some script-specific environment variables (Such variables will be described in the corresponding script part).
 
 ## Generic environment variables.
