@@ -57,7 +57,7 @@ def print_ko_message(message, exception = None):
         else:
             message += str(exception)
 
-    error_message =  { "message" : "KO", "cause" : message, name :  }
+    error_message =  { "message" : "KO", "cause" : message, "name" : "get_ratio_heap"  }
 
 
     print(json.dumps(error_message))
