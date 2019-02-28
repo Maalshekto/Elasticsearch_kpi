@@ -266,7 +266,7 @@ The step 3, 4 and 6 will be time-measured and this time will be returned as valu
  - Be aware that the measured time for this test is including network latency.  As there are as many request as there are documents, the latencies can take a considerable amount of time.
 
 ### Input variables
-There is one spectial variable for this test : **ES_NB_DOCS**.
+There is one special variable for this test : **ES_NB_DOCS**.
 This variable is optional and have a default value of 100.
 
 **Example**
@@ -310,7 +310,7 @@ The step 3, 4 and 6 will be time-measured and this time will be returned as valu
  - Be aware that the measured time for this test is including network latency.  The latency will have less impact than for **one by one** test but can still have some impacts.
 
 ### Input variables
-There is one spectial variable for this test : **ES_NB_DOCS**.
+There is one special variable for this test : **ES_NB_DOCS**.
 This variable is optional and have a default value of 10000.
 
 **Example**
