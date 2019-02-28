@@ -90,8 +90,10 @@ The format of the structure in case of failure of the test is the following :
 ## Script *get_ratio_heap.py*
 
 The purpose of this script is to retrieve the elasticseach density, that means the ratio between heap sizes (actually used and max) and indexes allocation size. 
+
 There is no formal Elastic group's recommandations, but there is a nice consensual ratio to maintain above, the **1/24 ratio**.
 See the discussion [here](https://discuss.elastic.co/t/elastic-ram-disk-ratio-minimum/132435) for more details. 
+
 Two kinds of ratio will be calculated respectively according to the current and max value of the heap. 
 Each ratio will also be calculated within 2 levels of granularity : node and cluster level.
 The ratio will be calculated only on node with data role.
