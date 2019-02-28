@@ -15,11 +15,11 @@ You can find more details [here](https://elasticsearch-py.readthedocs.io/en/mast
 
 **Example** : 
 *ES_PARAMS= [{
-&nbsp;&nbsp;&nbsp;&nbsp;"**host**": "**my-host.com**",
-&nbsp;&nbsp;&nbsp;&nbsp;"**port**": **9200**, 
-&nbsp;&nbsp;&nbsp;&nbsp;'**http_auth**': ['**elastic**', '**password**'], 
-&nbsp;&nbsp;&nbsp;&nbsp;'**scheme**' : '**https**', 
-&nbsp;&nbsp;&nbsp;&nbsp;'**ca_certs**' : "**/app/cacert.pem**"
+&nbsp;&nbsp;&nbsp;&nbsp;"**host**": "**my-host.com**",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"**port**": **9200**,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;'**http_auth**': ['**elastic**', '**password**'],<br/> 
+&nbsp;&nbsp;&nbsp;&nbsp;'**scheme**' : '**https**',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;'**ca_certs**' : "**/app/cacert.pem**"<br/>
 }]*
 
 
@@ -69,9 +69,9 @@ The format of the structure in case of success of the test is the following :
 ### Failure structure.
 The format of the structure in case of failure of the test is the following :
 {
-&nbsp;&nbsp;&nbsp;&nbsp;"**message**":  "**MyFailureMessage**"
-&nbsp;&nbsp;&nbsp;&nbsp;"**cause**": **42**
-&nbsp;&nbsp;&nbsp;&nbsp;"**name**": "**MyTestName**"
+&nbsp;&nbsp;&nbsp;&nbsp;"**message**":  "**MyFailureMessage**",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"**cause**": **42**,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"**name**": "**MyTestName**"<br/>
 }
 
 **Remarks**:
