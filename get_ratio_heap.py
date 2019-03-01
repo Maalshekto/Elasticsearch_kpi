@@ -8,7 +8,7 @@
 from elasticsearch import Elasticsearch, AuthenticationException
 import humanfriendly
 import json
-from utils.elasticsearch_utils import print_ko_message, socket_level_test, get_elasticsearch_params
+from utils.elasticsearch_utils import print_ko_message, socket_level_test, get_elasticsearch_params, is_data_node
 
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
@@ -25,7 +25,9 @@ TAG_NAME = 'name'
 TAG_RATIO_CUR_HEAP_DISK_INDICES = 'ratio.cur_heap_disk_indices'
 TAG_RATIO_MAX_HEAP_DISK_INDICES = 'ratio.max_heap_disk_indices'
 TAG_NAME_ALLOC = 'node'
+TAG_ROLE = 'node.role'
 TEST_ERROR_NAME = 'get_ratio_heap'
+
 
 
 #      __  __ ______ __     ____   ______ ____       ______ __  __ _   __ ______ ______ ____ ____   _   __ _____

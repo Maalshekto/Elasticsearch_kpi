@@ -30,7 +30,7 @@ TEST_NAME = "elastic_writing_test"
 SYSTEM_RETURN_CODE_ERROR = 0
 DELETE_AFTER_SUCCESS_FLAG=True
 TIMEOUT_TEST_SOCKET_LEVEL = 3
-
+TAG_ROLE = 'node.role'
 FLAG_DATA_ROLE = 'd'
 
 #      __  __ ______ __     ____   ______ ____       ______ __  __ _   __ ______ ______ ____ ____   _   __ _____

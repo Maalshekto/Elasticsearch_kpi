@@ -8,6 +8,7 @@ RUN pip install humanfriendly
 RUN pip install packaging
 RUN mkdir /app
 
+ADD utils /app/utils
 COPY get_ratio_heap.py /app
 COPY get_cluster_health.py /app
 COPY get_gc_state.py /app
