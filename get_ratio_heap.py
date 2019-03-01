@@ -8,7 +8,7 @@
 from elasticsearch import Elasticsearch, AuthenticationException
 import humanfriendly
 import json
-from utils.elasticsearch_utils import print_ko_message, socket_level_test, get_elasticsearch_params, is_data_node
+from utils.elasticsearch_utils import print_ko_message, socket_level_test, get_elasticsearch_params, is_data_node, print_ok_message
 
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
@@ -106,29 +106,12 @@ for node in memory_infos:
         if disk_usage == 0:
             print_ko_message('No data on node : ' + node[TAG_NAME], TEST_ERROR_NAME)
 
-        json_result =  {"message" : "OK",
-                        "value" : float(heap_usage)/float(disk_usage),
-                        "name": "ratio_cur_heap_alloc_" + node[TAG_NAME]}
-
-        print(json.dumps(json_result))
-
-        json_result = {"message": "OK",
-                       "value": float(heap_max) / float(disk_usage),
-                       "name": "ratio_max_heap_alloc_" + node[TAG_NAME]}
-
-        print(json.dumps(json_result))
+        print_ok_message(float(heap_usage)/float(disk_usage), "ratio_cur_heap_alloc_" + node[TAG_NAME])
+        print_ok_message(float(heap_max)/float(disk_usage), "ratio_max_heap_alloc_" + node[TAG_NAME])
         
 ratio_current_heap_disk = float(heap_usage_total)/float(disk_usage_total)
 ratio_max_heap_disk = float(heap_max_total)/float(disk_usage_total)
 
-json_result =  {"message" : "OK",
-                        "value" : ratio_current_heap_disk,
-                        "name": "ratio_cur_heap_alloc_total"}
+print_ok_message(ratio_current_heap_disk, "ratio_cur_heap_alloc_total")
+print_ok_message(ratio_max_heap_disk, "ratio_max_heap_alloc_total")
 
-print(json.dumps(json_result))
-
-json_result = {"message": "OK",
-               "value": ratio_max_heap_disk,
-               "name": "ratio_max_heap_alloc_total"}
-
-print(json.dumps(json_result))

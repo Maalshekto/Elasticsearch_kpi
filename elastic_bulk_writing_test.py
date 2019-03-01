@@ -29,6 +29,7 @@ SYSTEM_RETURN_CODE_ERROR = 0
 DELETE_AFTER_SUCCESS_FLAG=True
 
 
+
 #      __  ___ ___     ____ _   __     _____  ______ ____   ____ ____  ______
 #     /  |/  //   |   /  _// | / /    / ___/ / ____// __ \ /  _// __ \/_  __/
 #    / /|_/ // /| |   / / /  |/ /     \__ \ / /    / /_/ / / / / /_/ / / /
@@ -116,9 +117,4 @@ except Exception as e:
 	es.indices.delete(index='test_elastic_bulk_writing_test')
 	print_ko_message('Generic error : ', TEST_NAME, e)
 
-json_result =  {"message" : "OK",
-                "value" : time_total,
-                "name": TEST_NAME}
-
-print(json.dumps(json_result))
-
+print_ok_message(time_total, TEST_NAME)

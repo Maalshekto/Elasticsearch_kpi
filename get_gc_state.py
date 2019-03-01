@@ -7,7 +7,7 @@
 
 from elasticsearch import Elasticsearch, AuthenticationException
 import json
-from utils.elasticsearch_utils import print_ko_message,socket_level_test, get_elasticsearch_params
+from utils.elasticsearch_utils import print_ko_message,socket_level_test, get_elasticsearch_params, print_ok_message
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
 #   / /    / / / //  |/ / \__ \  / /  / /| |  /  |/ /  / /   \__ \
@@ -50,32 +50,11 @@ try:
         gc_old_time += int(gc_old['collection_time_in_millis'])
 
 
-        json_result = { "message": "OK",
-                        "value": int(gc_old['collection_count']),
-                        "name": "gc_old_count_" + nodes[node]['name'] }
-
-        print(json.dumps(json_result))
-
-        json_result = { "message": "OK",
-                        "value": int(gc_old['collection_time_in_millis']),
-                        "name": "gc_old_time_" + nodes[node]['name']}
-
-        print(json.dumps(json_result))
-
-
-    json_result = {"message": "OK",
-                   "value": gc_old_count,
-                   "name": "gc_old_count_total"}
-
-    print(json.dumps(json_result))
-
-    json_result = {"message": "OK",
-                   "value": gc_old_time,
-                   "name": "gc_old_time_total"}
-
-    print(json.dumps(json_result))
-
-
+        print_ok_message(int(gc_old['collection_count']), "gc_old_count_" + nodes[node]['name'])
+        print_ok_message(int(gc_old['collection_time_in_millis']), "gc_old_count_" + nodes[node]['name'])
+        
+    print_ok_message(gc_old_count, "gc_old_count_total")
+    print_ok_message(gc_old_time, "gc_old_time_total")
 
 except AuthenticationException as ae:
     print_ko_message('Invalid password or login')

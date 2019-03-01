@@ -8,7 +8,7 @@
 from elasticsearch import Elasticsearch, AuthenticationException
 import json
 from packaging import version
-from utils.elasticsearch_utils import print_ko_message,socket_level_test, get_elasticsearch_params
+from utils.elasticsearch_utils import print_ko_message,socket_level_test, get_elasticsearch_params, print_ok_message
 
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
@@ -60,43 +60,14 @@ try:
         bulk_queue += int(bulk['queue'])
         bulk_rejected += int(bulk['rejected'])
 
+        print_ok_message(int(bulk['active']), "bulk_active_" + bulk['node_name'])
+        print_ok_message(int(bulk['queue']), "bulk_queue_" + bulk['node_name'])
+        print_ok_message(int(bulk['rejected']), "bulk_rejected_" + bulk['node_name'])
 
-        json_result = { "message": "OK",
-                        "value": int(bulk['active']),
-                        "name": "bulk_active_" + bulk['node_name']}
-
-        print(json.dumps(json_result))
-
-        json_result = { "message": "OK",
-                        "value": int(bulk['queue']),
-                        "name": "bulk_queue_" + bulk['node_name']}
-
-        print(json.dumps(json_result))
-
-        json_result = { "message": "OK",
-                        "value": int(bulk['rejected']),
-                        "name": "bulk_rejected_" + bulk['node_name']}
-
-        print(json.dumps(json_result))
-
-    json_result = {"message": "OK",
-                   "value": bulk_active,
-                   "name": "bulk_active_total"}
-
-    print(json.dumps(json_result))
-
-    json_result = {"message": "OK",
-                   "value": bulk_queue,
-                   "name": "bulk_queue_total"}
-
-    print(json.dumps(json_result))
-
-    json_result = { "message": "OK",
-                    "value": bulk_rejected,
-                    "name": "bulk_rejected_total"}
-
-    print(json.dumps(json_result))
-
+    print_ok_message(bulk_active, "bulk_active_total")
+    print_ok_message(bulk_queue, "bulk_queue_total")
+    print_ok_message(bulk_rejected, "bulk_rejected_total")
+   
 
 except AuthenticationException as ae:
     print_ko_message('Invalid password or login', TEST_ERROR_NAME)

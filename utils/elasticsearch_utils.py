@@ -88,3 +88,17 @@ def is_data_node(data):
     """
     role = data[TAG_ROLE]
     return FLAG_DATA_ROLE in role
+
+
+def print_message(message, value, test_name):
+    """Print error messages in JSON format indicating cause.
+
+    Keyword arguments:
+        message -- The custom error message.
+        exception -- if the error is due to exception (default None)
+    """
+    ok_message =  { "message" : message, "value" : value, 'name' : test_name  }
+    print(json.dumps(ok_message))
+
+def print_ok_message(value, test_name):
+    print_message("OK", value, test_name)

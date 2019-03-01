@@ -109,9 +109,4 @@ except Exception as e:
 	es.indices.delete(index='test_elastic_writing_test')
 	print_ko_message('Generic error : ', TEST_NAME, e)
 
-json_result =  {"message" : "OK",
-                "value" : time_total,
-                "name": TEST_NAME}
-
-print(json.dumps(json_result))
-
+print_ok_message(time_total, TEST_NAME)
