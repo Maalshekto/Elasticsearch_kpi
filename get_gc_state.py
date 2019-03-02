@@ -7,7 +7,9 @@
 
 from elasticsearch import Elasticsearch, AuthenticationException
 import json
-from utils.elasticsearch_utils import print_ko_message,socket_level_test, get_elasticsearch_params, print_ok_message
+from utils.elasticsearch_utils import print_ko_message,socket_level_test, \
+    get_elasticsearch_params, print_ok_message
+
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
 #   / /    / / / //  |/ / \__ \  / /  / /| |  /  |/ /  / /   \__ \
@@ -50,8 +52,10 @@ try:
         gc_old_time += int(gc_old['collection_time_in_millis'])
 
 
-        print_ok_message(int(gc_old['collection_count']), f"gc_old_count_{nodes[node]['name']}")
-        print_ok_message(int(gc_old['collection_time_in_millis']), f"gc_old_count_{nodes[node]['name']}")
+        print_ok_message(int(gc_old['collection_count']), 
+            f"gc_old_count_{nodes[node]['name']}")
+        print_ok_message(int(gc_old['collection_time_in_millis']), 
+            f"gc_old_count_{nodes[node]['name']}")
         
     print_ok_message(gc_old_count, "gc_old_count_total")
     print_ok_message(gc_old_time, "gc_old_time_total")

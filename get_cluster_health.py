@@ -7,7 +7,9 @@
 
 from elasticsearch import Elasticsearch, AuthenticationException
 import json
-from utils.elasticsearch_utils import print_ko_message, socket_level_test, get_elasticsearch_params, print_message
+from utils.elasticsearch_utils import print_ko_message, socket_level_test, \
+	get_elasticsearch_params, print_message
+
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
 #   / /    / / / //  |/ / \__ \  / /  / /| |  /  |/ /  / /   \__ \

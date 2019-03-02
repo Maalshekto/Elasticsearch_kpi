@@ -12,7 +12,8 @@ import random
 from datetime import datetime
 from time import time, sleep
 import math
-from utils.elasticsearch_utils import print_ko_message, socket_level_test, get_elasticsearch_params, print_ok_message
+from utils.elasticsearch_utils import print_ko_message, \
+	socket_level_test, get_elasticsearch_params, print_ok_message
 
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
@@ -27,6 +28,7 @@ TEST_NB_DOC_WRITE = 100
 TEST_NAME = "elastic_writing_test"
 SYSTEM_RETURN_CODE_ERROR = 0
 DELETE_AFTER_SUCCESS_FLAG=True
+PRECISION=2
 
 
 
@@ -73,7 +75,8 @@ try:
 			'name': "test",
 			'value': random.random()
 		}
-		es.index(index='test_elastic_writing_test', doc_type='record', body = doc)
+		es.index(index='test_elastic_writing_test', 
+			doc_type='record', body = doc)
 	
 	# Waiting 2 seconds for indexation to be fully completed.
 	time_first_step = time() - startTime
@@ -91,13 +94,15 @@ try:
 		}
 	}
 	res = es.search(index = "test_elastic_writing_test", body= request)	
-	time_total = math.floor((time_first_step + time() - startTime) * 100000)/100 
+	time_total_millis = (time_first_step + time() - startTime) * 1000
 	#tests on answer:
 	
 	#aggregation of all records ?
 	if res['hits']['total'] != nb_to_write:
 		es.indices.delete(index='test_elastic_writing_test')
-		print_ko_message(f"Aggregation not done with all documents : {nb_to_write} expected vs {res['hits']['total']} retrieved.", TEST_NAME)
+		print_ko_message(f"Aggregation not done with all documents : "
+			f"{nb_to_write} expected vs {res['hits']['total']} retrieved.", 
+			TEST_NAME)
 	
 	if res['aggregations']['total']['value'] > nb_to_write:
 		es.indices.delete(index='test_elastic_writing_test')
@@ -109,4 +114,4 @@ except Exception as e:
 	es.indices.delete(index='test_elastic_writing_test')
 	print_ko_message('Generic error : ', TEST_NAME, e)
 
-print_ok_message(time_total, TEST_NAME)
+print_ok_message(float(f"{time_total_millis:.{PRECISION}f}"), TEST_NAME)

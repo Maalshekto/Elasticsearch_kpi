@@ -8,7 +8,8 @@
 from elasticsearch import Elasticsearch, AuthenticationException
 import json
 from packaging import version
-from utils.elasticsearch_utils import print_ko_message,socket_level_test, get_elasticsearch_params, print_ok_message
+from utils.elasticsearch_utils import print_ko_message,socket_level_test, \
+    get_elasticsearch_params, print_ok_message
 
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
@@ -49,7 +50,8 @@ try:
     nodes = es.cat.thread_pool(thread_pool_patterns=[thread], format='json')
 
     if len(nodes) == 0:
-        print_ko_message('No write thread found in threads pool : check version of elasticsearch (should be 6.X)', TEST_ERROR_NAME)
+        print_ko_message("No write thread found in threads pool : check version"
+            " of elasticsearch (should be 6.X)", TEST_ERROR_NAME)
 
     bulk_active = 0
     bulk_queue = 0
@@ -60,9 +62,12 @@ try:
         bulk_queue += int(bulk['queue'])
         bulk_rejected += int(bulk['rejected'])
 
-        print_ok_message(int(bulk['active']), f"bulk_active_{bulk['node_name']}")
-        print_ok_message(int(bulk['queue']), f"bulk_queue_{bulk['node_name']}")
-        print_ok_message(int(bulk['rejected']), f"bulk_rejected_{bulk['node_name']}")
+        print_ok_message(int(bulk['active']), 
+            f"bulk_active_{bulk['node_name']}")
+        print_ok_message(int(bulk['queue']), 
+            f"bulk_queue_{bulk['node_name']}")
+        print_ok_message(int(bulk['rejected']), 
+            f"bulk_rejected_{bulk['node_name']}")
 
     print_ok_message(bulk_active, "bulk_active_total")
     print_ok_message(bulk_queue, "bulk_queue_total")

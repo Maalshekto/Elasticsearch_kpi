@@ -22,7 +22,7 @@ def print_ko_message(message, test_name, exception = None):
         else:
             message += str(exception)
 
-    error_message =  { "message" : "KO", "cause" : message, 'name' : test_name  }
+    error_message =  { "message" : "KO", "cause" : message, 'name' : test_name }
 
 
     print(json.dumps(error_message))
@@ -68,7 +68,8 @@ def get_elasticsearch_params(test_name):
         # hosts reachable control:
         for param in es_params:
             if not socket_level_test(param['host'], param['port']):
-                print_ko_message(f"{param['host']}:{param['port']} not reachable - Check port.", test_name)
+                print_ko_message(f"{param['host']}:{param['port']} "
+                    "not reachable - Check port.", test_name)
         return es_params
     except socket.gaierror:
         print_ko_message("Host not reachable - Check host.", test_name)
@@ -97,7 +98,7 @@ def print_message(message, value, test_name):
         message -- The custom error message.
         exception -- if the error is due to exception (default None)
     """
-    ok_message =  { "message" : message, "value" : value, 'name' : test_name  }
+    ok_message =  { "message" : message, "value" : value, 'name' : test_name }
     print(json.dumps(ok_message))
 
 def print_ok_message(value, test_name):
