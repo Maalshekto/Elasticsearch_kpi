@@ -104,10 +104,10 @@ for node in memory_infos:
         heap_max = get_value_from_hr_tag(node, TAG_HEAP_MAX)
         heap_max_total += heap_max
         if disk_usage == 0:
-            print_ko_message('No data on node : ' + node[TAG_NAME], TEST_ERROR_NAME)
+            print_ko_message(f"No data on node : {node[TAG_NAME]}", TEST_ERROR_NAME)
 
-        print_ok_message(float(heap_usage)/float(disk_usage), "ratio_cur_heap_alloc_" + node[TAG_NAME])
-        print_ok_message(float(heap_max)/float(disk_usage), "ratio_max_heap_alloc_" + node[TAG_NAME])
+        print_ok_message(float(heap_usage)/float(disk_usage), f"ratio_cur_heap_alloc_{node[TAG_NAME]}")
+        print_ok_message(float(heap_max)/float(disk_usage), f"ratio_max_heap_alloc_{node[TAG_NAME]}")
         
 ratio_current_heap_disk = float(heap_usage_total)/float(disk_usage_total)
 ratio_max_heap_disk = float(heap_max_total)/float(disk_usage_total)

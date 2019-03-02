@@ -68,7 +68,7 @@ def get_elasticsearch_params(test_name):
         # hosts reachable control:
         for param in es_params:
             if not socket_level_test(param['host'], param['port']):
-                print_ko_message(param['host'] + ":" + str(param['port']) + " not reachable - Check port.", test_name)
+                print_ko_message(f"{param['host']}:{param['port']} not reachable - Check port.", test_name)
         return es_params
     except socket.gaierror:
         print_ko_message("Host not reachable - Check host.", test_name)

@@ -97,7 +97,7 @@ try:
 	#aggregation of all records ?
 	if res['hits']['total'] != nb_to_write:
 		es.indices.delete(index='test_elastic_writing_test')
-		print_ko_message('Aggregation not done with all documents : ' + str(nb_to_write) + ' expected vs ' + str(res['hits']['total']) + ' retrieved.', TEST_NAME)
+		print_ko_message(f"Aggregation not done with all documents : {nb_to_write} expected vs {res['hits']['total']} retrieved.", TEST_NAME)
 	
 	if res['aggregations']['total']['value'] > nb_to_write:
 		es.indices.delete(index='test_elastic_writing_test')

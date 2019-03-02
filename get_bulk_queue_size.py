@@ -60,9 +60,9 @@ try:
         bulk_queue += int(bulk['queue'])
         bulk_rejected += int(bulk['rejected'])
 
-        print_ok_message(int(bulk['active']), "bulk_active_" + bulk['node_name'])
-        print_ok_message(int(bulk['queue']), "bulk_queue_" + bulk['node_name'])
-        print_ok_message(int(bulk['rejected']), "bulk_rejected_" + bulk['node_name'])
+        print_ok_message(int(bulk['active']), f"bulk_active_{bulk['node_name']}")
+        print_ok_message(int(bulk['queue']), f"bulk_queue_{bulk['node_name']}")
+        print_ok_message(int(bulk['rejected']), f"bulk_rejected_{bulk['node_name']}")
 
     print_ok_message(bulk_active, "bulk_active_total")
     print_ok_message(bulk_queue, "bulk_queue_total")

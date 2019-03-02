@@ -50,8 +50,8 @@ try:
         gc_old_time += int(gc_old['collection_time_in_millis'])
 
 
-        print_ok_message(int(gc_old['collection_count']), "gc_old_count_" + nodes[node]['name'])
-        print_ok_message(int(gc_old['collection_time_in_millis']), "gc_old_count_" + nodes[node]['name'])
+        print_ok_message(int(gc_old['collection_count']), f"gc_old_count_{nodes[node]['name']}")
+        print_ok_message(int(gc_old['collection_time_in_millis']), f"gc_old_count_{nodes[node]['name']}")
         
     print_ok_message(gc_old_count, "gc_old_count_total")
     print_ok_message(gc_old_time, "gc_old_time_total")
