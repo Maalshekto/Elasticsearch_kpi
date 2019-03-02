@@ -12,7 +12,7 @@ from datetime import datetime
 from time import time, sleep
 import math
 import os
-from utils.elasticsearch_utils import print_ko_message, socket_level_test, get_elasticsearch_params
+from utils.elasticsearch_utils import print_ko_message, socket_level_test, get_elasticsearch_params, print_ok_message
 
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
 #    / ____// __ \ / | / // ___//_  __//   |   / | / //_  __// ___/
