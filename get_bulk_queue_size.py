@@ -50,8 +50,7 @@ try:
     nodes = es.cat.thread_pool(thread_pool_patterns=[thread], format='json')
 
     if len(nodes) == 0:
-        print_ko_message("No write thread found in threads pool : check version"
-            " of elasticsearch (should be 6.X)", TEST_ERROR_NAME)
+        print_ko_message(f"No {thread} thread found in threads pool", TEST_ERROR_NAME)
 
     bulk_active = 0
     bulk_queue = 0
