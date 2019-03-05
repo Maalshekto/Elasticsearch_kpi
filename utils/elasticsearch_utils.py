@@ -56,7 +56,7 @@ def get_elasticsearch_params(test_name):
             es_param["port"] = int(os.environ['ES_PORT'])
             es_param["host"] = os.environ['ES_HOST']
             es_param["http_auth"] = [es_user, os.environ['ES_PWD']]
-            es_param["scheme"] = ES_SCHEME
+            es_param["scheme"] = es_scheme
             if es_capath != "":
                 es_param["ca_certs"] = es_capath
 
