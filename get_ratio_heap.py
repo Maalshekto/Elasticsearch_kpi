@@ -8,7 +8,7 @@
 from elasticsearch import Elasticsearch, AuthenticationException
 import humanfriendly
 import json
-from utils.elasticsearch_utils import print_ko_message, socket_level_test \
+from utils.elasticsearch_utils import print_ko_message, socket_level_test, \
     get_elasticsearch_params, is_data_node, print_ok_message
 
 #     ______ ____   _   __ _____ ______ ___     _   __ ______ _____
@@ -94,7 +94,7 @@ node_infos = {}
 
 for node in alloc:
     node_infos[node[TAG_NAME_ALLOC]] = {}
-    node_infos[node[TAG_NAME_ALLOC]][TAG_DISK_USAGE] = 
+    node_infos[node[TAG_NAME_ALLOC]][TAG_DISK_USAGE] = \
         get_value_from_tag(node, TAG_DISK_USAGE)
 
 disk_usage_total = 0 
