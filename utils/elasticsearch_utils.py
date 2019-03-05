@@ -56,7 +56,7 @@ def get_elasticsearch_params(test_name):
             es_param["port"] = int(os.environ['ES_PORT'])
             es_param["host"] = os.environ['ES_HOST']
             es_param["http_auth"] = [es_user, os.environ['ES_PWD']]
-            es_param["scheme"] = es_scheme
+            es_param["scheme"] = ES_SCHEME
             if es_capath != "":
                 es_param["ca_certs"] = es_capath
 
@@ -65,12 +65,13 @@ def get_elasticsearch_params(test_name):
         json_acceptable_string = es_params.replace("'", "\"")
         es_params = json.loads(json_acceptable_string)
 
+        responding_hosts = []
         # hosts reachable control:
         for param in es_params:
-            if not socket_level_test(param['host'], param['port']):
-                print_ko_message(f"{param['host']}:{param['port']} "
-                    "not reachable - Check port.", test_name)
-        return es_params
+            if socket_level_test(param['host'], param['port']):
+                responding_hosts.append(param)
+                
+        return responding_hosts
     except socket.gaierror:
         print_ko_message("Host not reachable - Check host.", test_name)
     except ValueError as ve:

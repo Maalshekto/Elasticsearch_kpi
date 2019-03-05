@@ -71,6 +71,9 @@ def get_value_from_tag(data, tag):
 
 es_params = get_elasticsearch_params(TEST_ERROR_NAME)
 
+if len(es_params) == 0:
+    print_ko_message("None of provided server is responding.", TEST_NAME)
+
 try:
     # Retrieve data from Elasticsearch.
     es = Elasticsearch(es_params)

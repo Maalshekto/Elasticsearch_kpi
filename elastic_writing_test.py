@@ -41,6 +41,8 @@ PRECISION=2
 
 nb_to_write = int(os.getenv('ES_NB_DOCS') or TEST_NB_DOC_WRITE)
 es_params = get_elasticsearch_params(TEST_NAME)
+if len(es_params) == 0:
+	print_ko_message("None of provided server is responding.", TEST_NAME)
 
 try:
     # Retrieve data from Elasticsearch.

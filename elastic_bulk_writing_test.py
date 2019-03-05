@@ -1,4 +1,4 @@
-#      __     ____ ____   ____   ___     ____   ____ ______ _____
+#      __     ____ ____   ____   ___  p   ____   ____ ______ _____
 #     / /    /  _// __ ) / __ \ /   |   / __ \ /  _// ____// ___/
 #    / /     / / / __  |/ /_/ // /| |  / /_/ / / / / __/   \__ \
 #   / /___ _/ / / /_/ // _, _// ___ | / _, _/_/ / / /___  ___/ /
@@ -28,7 +28,7 @@ TEST_NB_DOC_WRITE = 10000
 TEST_NAME = "elastic_bulk_writing_test"
 SYSTEM_RETURN_CODE_ERROR = 0
 DELETE_AFTER_SUCCESS_FLAG=True
-
+PRECISION=2
 
 
 #      __  ___ ___     ____ _   __     _____  ______ ____   ____ ____  ______
@@ -40,6 +40,9 @@ DELETE_AFTER_SUCCESS_FLAG=True
 
 nb_to_write = int(os.getenv('ES_NB_DOCS') or TEST_NB_DOC_WRITE)
 es_params = get_elasticsearch_params(TEST_NAME)
+
+if len(es_params) == 0:
+	print_ko_message("None of provided server is responding.", TEST_NAME)
 
 try:
     # Retrieve data from Elasticsearch.
