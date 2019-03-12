@@ -16,6 +16,7 @@ COPY get_gc_state.py /app
 COPY get_bulk_queue_size.py /app
 COPY elastic_writing_test.py /app
 COPY elastic_bulk_writing_test.py /app
+COPY load_elastic_cluster.py /app
 
 ENTRYPOINT [ "dumb-init", "--" ]
 CMD [ "python", "/app/get_ratio_heap.py" ]
