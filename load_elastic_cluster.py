@@ -72,3 +72,8 @@ try:
 		for i in range(0, nb_to_write)
 	]
 	helpers.bulk(es, actions)
+except Exception as e:
+	es.indices.delete(index='test_elastic_bulk_writing_test')
+	print_ko_message('Generic error : ', TEST_NAME, e)
+
+print_ok_message(100.0, TEST_NAME)
