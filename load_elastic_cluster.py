@@ -45,8 +45,8 @@ if health[TAG_STATUS] != GREEN_STATUS:
 try:
 	settings = {
 		"settings": {
-			"number_of_shards": 1,
-			"number_of_replicas" : 1
+			"number_of_shards": 5,
+			"number_of_replicas" : 2
 		}
 	}
 	es.indices.delete(index='sample_data', ignore=404)
