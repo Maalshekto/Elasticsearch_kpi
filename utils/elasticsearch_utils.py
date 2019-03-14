@@ -3,6 +3,7 @@ import sys
 import socket
 import os
 
+FILTER_NOT_RESPONDING = False
 TIMEOUT_TEST_SOCKET_LEVEL = 3
 SYSTEM_RETURN_CODE_ERROR = 0
 FLAG_DATA_ROLE = 'd'
@@ -68,7 +69,7 @@ def get_elasticsearch_params(test_name):
         responding_hosts = []
         # hosts reachable control:
         for param in es_params:
-            if socket_level_test(param['host'], param['port']):
+            if not FILTER_NOT_RESPONDING || socket_level_test(param['host'], param['port']):
                 responding_hosts.append(param)
                 
         return responding_hosts
