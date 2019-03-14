@@ -69,7 +69,7 @@ def get_elasticsearch_params(test_name):
         responding_hosts = []
         # hosts reachable control:
         for param in es_params:
-            if not FILTER_NOT_RESPONDING || socket_level_test(param['host'], param['port']):
+            if not FILTER_NOT_RESPONDING or socket_level_test(param['host'], param['port']):
                 responding_hosts.append(param)
                 
         return responding_hosts
