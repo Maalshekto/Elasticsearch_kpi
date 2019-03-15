@@ -99,11 +99,18 @@ try:
 	time_total_millis = (time_first_step + time() - startTime) * 1000
 	#tests on answer:
 	
+	nb_retrieved_records = res['hits']['total'] 
+
+	# In version 7.0.0. of elasticsearch, nb_retrieved_records is a dict
+	# To retrieve the expected value, we have to use "value" key
+	if isinstance(nb_retrieved_records, (dict)):
+		nb_retrieved_records = nb_retrieved_records["value"]
+		
 	#aggregation of all records ?
-	if res['hits']['total'] != nb_to_write:
+	if nb_retrieved_records != nb_to_write:	
 		es.indices.delete(index='test_elastic_writing_test')
 		print_ko_message(f"Aggregation not done with all documents : "
-			f"{nb_to_write} expected vs {res['hits']['total']} retrieved.", 
+			f"{nb_to_write} expected vs {nb_retrieved_records} retrieved.", 
 			TEST_NAME)
 	
 	if res['aggregations']['total']['value'] > nb_to_write:
