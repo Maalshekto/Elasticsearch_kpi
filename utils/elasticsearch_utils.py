@@ -17,7 +17,7 @@ def output_message_stdout(message):
     print(json.dumps(message))
 
 def output_message_kafka(message):
-    producer = KafkaProducer(bootstrap_servers="localhost:9092", batch_size=1)
+    producer = KafkaProducer(bootstrap_servers="172.22.0.1:9092", batch_size=1)
     producer.send("metrics", message.encode())
 
 
@@ -122,7 +122,7 @@ def print_message(message, value, test_name):
         exception -- if the error is due to exception (default None)
     """
     ok_message =  { "message" : message, "value" : value, 'name' : test_name }
-    output_message(ok_message)
+    output_message(ok_message)  
 
 def print_ok_message(value, test_name):
     print_message("OK", value, test_name)
