@@ -7,6 +7,7 @@ RUN chmod +x /usr/local/bin/dumb-init
 RUN pip install Elasticsearch 
 RUN pip install humanfriendly
 RUN pip install packaging
+RUN pip install kafka-python
 RUN mkdir /app
 
 ADD utils /app/utils

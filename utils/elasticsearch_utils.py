@@ -2,12 +2,33 @@ import json
 import sys
 import socket
 import os
+from kafka import KafkaProducer
 
 FILTER_NOT_RESPONDING = True
 TIMEOUT_TEST_SOCKET_LEVEL = 3
 SYSTEM_RETURN_CODE_ERROR = 0
 FLAG_DATA_ROLE = 'd'
 TAG_ROLE = 'node.role'
+OUTPUT_SYSTEM_STDOUT = 1
+OUTPUT_SYSTEM_KAFKA = 2
+OUTPUT_SYSTEM = OUTPUT_SYSTEM_KAFKA
+
+def output_message_stdout(message):
+    print(json.dumps(message))
+
+def output_message_kafka(message):
+    producer = KafkaProducer(bootstrap_servers="localhost:9092", batch_size=1)
+    producer.send("metrics", message.encode())
+
+
+def output_message(message):
+    switcher = {
+        OUTPUT_SYSTEM_STDOUT: output_message_stdout,
+        OUTPUT_SYSTEM_KAFKA: output_message_kafka
+    }
+
+    func = switcher.get(OUTPUT_SYSTEM, lambda: "nothing")
+    return func(message)
 
 def print_ko_message(message, test_name, exception = None):
     """Print error messages in JSON format indicating cause.
@@ -26,7 +47,7 @@ def print_ko_message(message, test_name, exception = None):
     error_message =  { "message" : "KO", "cause" : message, 'name' : test_name }
 
 
-    print(json.dumps(error_message))
+    output_message(error_message)
     sys.exit(SYSTEM_RETURN_CODE_ERROR)
 
 def socket_level_test(host, port):
@@ -101,7 +122,7 @@ def print_message(message, value, test_name):
         exception -- if the error is due to exception (default None)
     """
     ok_message =  { "message" : message, "value" : value, 'name' : test_name }
-    print(json.dumps(ok_message))
+    output_message(ok_message)
 
 def print_ok_message(value, test_name):
     print_message("OK", value, test_name)
