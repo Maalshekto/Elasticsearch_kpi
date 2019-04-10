@@ -19,12 +19,14 @@ def output_message_stdout(message):
 def output_message_kafka(message):
 
     headers = {
-        'e': 'application/vnd.kafka.json.v2+json',
+        'Content-Type': 'application/vnd.kafka.json.v2+json',
     }
 
-    data = json.dumps(message)
+    msg = json.dumps(message)
 
-    response = requests.post('http://172.22.0.1:8082/topics/metrics', headers=headers, data=data)
+    data = f'{{"records":[{{"value":{msg}]}}'
+
+    response = requests.post('http://172.22.0.5:8082/topics/metrics', headers=headers, data=data)
 
 
 def output_message(message):

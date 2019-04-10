@@ -21,6 +21,3 @@ COPY load_elastic_cluster.py /app
 
 ENTRYPOINT [ "dumb-init", "--" ]
 CMD [ "python", "/app/get_ratio_heap.py" ]
-
-
-
