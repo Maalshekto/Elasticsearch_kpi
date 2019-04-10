@@ -2,7 +2,7 @@ import json
 import sys
 import socket
 import os
-from kafka import KafkaProducer
+import requests
 
 FILTER_NOT_RESPONDING = True
 TIMEOUT_TEST_SOCKET_LEVEL = 3
@@ -17,9 +17,14 @@ def output_message_stdout(message):
     print(json.dumps(message))
 
 def output_message_kafka(message):
-    producer = KafkaProducer(bootstrap_servers="172.22.0.3:9092", batch_size=1)
-    producer.send("metrics", json.dumps(message).encode())
-    producer.close()        
+
+    headers = {
+        'e': 'application/vnd.kafka.json.v2+json',
+    }
+
+    data = json.dumps(message)
+
+    response = requests.post('http://172.22.0.1:8082/topics/metrics', headers=headers, data=data)
 
 
 def output_message(message):
