@@ -3,12 +3,15 @@ import sys
 import socket
 import os
 import requests
+import time
 
 FILTER_NOT_RESPONDING = True
 TIMEOUT_TEST_SOCKET_LEVEL = 3
 SYSTEM_RETURN_CODE_ERROR = 0
 FLAG_DATA_ROLE = 'd'
 TAG_ROLE = 'node.role'
+TIMESTAMP_LABEL = 'timestamp'
+CLUSTER_NAME_LABEL = 'cluster_name'
 OUTPUT_SYSTEM_STDOUT = 1
 OUTPUT_SYSTEM_KAFKA = 2
 OUTPUT_SYSTEM = OUTPUT_SYSTEM_KAFKA
@@ -23,6 +26,9 @@ def output_message_kafka(message):
     }
 
     msg = json.dumps(message)
+
+    msg[TIMESTAMP_LABEL] = time.time()
+    msg[CLUSTER_NAME_LABEL] = 'toto'
 
     data = f'{{"records":[{{"value":{msg}}}]}}'
 
