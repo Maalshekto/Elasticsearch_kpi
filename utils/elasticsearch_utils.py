@@ -24,7 +24,8 @@ def output_message_kafka(message):
 
     msg = json.dumps(message)
 
-    data = f'{{"records":[{{"value":{msg}]}}'
+    data = f'{{"records":[{{"value":{msg}}}]}}'
+
 
     response = requests.post('http://172.22.0.5:8082/topics/metrics', headers=headers, data=data)
 
