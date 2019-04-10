@@ -17,9 +17,9 @@ def output_message_stdout(message):
     print(json.dumps(message))
 
 def output_message_kafka(message):
-    producer = KafkaProducer(bootstrap_servers="172.22.0.1:9092", batch_size=1)
+    producer = KafkaProducer(bootstrap_servers="172.22.0.3:9092", batch_size=1)
     producer.send("metrics", json.dumps(message).encode())
-    producer.close()
+    producer.close()        
 
 
 def output_message(message):
