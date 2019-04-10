@@ -25,10 +25,10 @@ def output_message_kafka(message):
         'Content-Type': 'application/vnd.kafka.json.v2+json',
     }
 
-    msg = json.dumps(message)
+    message[TIMESTAMP_LABEL] = time.time()
+    message[CLUSTER_NAME_LABEL] = 'toto'
 
-    msg[TIMESTAMP_LABEL] = time.time()
-    msg[CLUSTER_NAME_LABEL] = 'toto'
+    msg = json.dumps(message)
 
     data = f'{{"records":[{{"value":{msg}}}]}}'
 
