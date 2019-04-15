@@ -1,5 +1,5 @@
 # Using latest Alpine base version
-FROM python:3-alpine
+FROM python:3.6-alpine
 
 RUN apk add --no-cache wget
 RUN apk add --no-cache postgresql-libs
