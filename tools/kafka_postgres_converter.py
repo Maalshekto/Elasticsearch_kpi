@@ -2,7 +2,7 @@ import json
 import psycopg2
 from kafka import KafkaConsumer
 
-consumer = KafkaConsumer("metrics", bootstrap_servers=['localhost:9092'], group_id="metrics")
+consumer = KafkaConsumer("metrics", bootstrap_servers=['172.22.0.3:9092'], group_id="metrics")
 
 try:
     connection = psycopg2.connect(user="postgres",
