@@ -14,7 +14,7 @@ TIMESTAMP_LABEL = 'timestamp'
 CLUSTER_NAME_LABEL = 'cluster_name'
 OUTPUT_SYSTEM_STDOUT = 1
 OUTPUT_SYSTEM_KAFKA = 2
-OUTPUT_SYSTEM = OUTPUT_SYSTEM_KAFKA
+OUTPUT_SYSTEM = OUTPUT_SYSTEM_STDOUT
 
 def output_message_stdout(message):
     print(json.dumps(message))
